@@ -1,0 +1,7 @@
+.backgroundImg{
+    background-color: #FBD062;
+    height: 96vh;
+    width: 100%;
+    clip-path: polygon(0 0, 100% 0%,100% 75%, 0% 100%);
+    margin-bottom: 40px;
+}
