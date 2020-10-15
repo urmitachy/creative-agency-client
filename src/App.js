@@ -23,10 +23,12 @@ import AdminDashboard from './components/Admin/AdminDashboard/AdminDashboard';
 export const UserContext = createContext();
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({});
+  const [isAdmin, setIsAdmin] = useState(false);
   return (
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Switch>
+          
           <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
           </PrivateRoute>
@@ -39,6 +41,8 @@ function App() {
           <PrivateRoute path="/addReview">
             <Review></Review>
           </PrivateRoute>
+          
+          
           <PrivateRoute path="/admin">
             <AdminDashboard />
           </PrivateRoute>
@@ -48,6 +52,8 @@ function App() {
           <PrivateRoute path="/addService">
             <AddService></AddService>
           </PrivateRoute>        
+         
+         
           <Route path="/login">
             <Login></Login>
           </Route>

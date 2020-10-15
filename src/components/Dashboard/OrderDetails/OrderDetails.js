@@ -49,8 +49,6 @@ const OrderDetails = () => {
     }    
     return (
         <div className="col-12 col-md-8 m-4">
-            <h3>Orders</h3>
-            <h5>{loggedInUser.name}</h5>
             <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">                                          
                         <input name="email" type="email" defaultValue={loggedInUser.email} placeholder="Your Email Address" className="form-control" ref={register} />

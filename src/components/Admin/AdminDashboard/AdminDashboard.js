@@ -8,7 +8,7 @@ import SidebarAdmin from '../SidebarAdmin/SidebarAdmin';
 
 const AdminDashboard = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const [isAdmin, setIsAdmin] = useState(false);
+    const [isAdmin, setIsAdmin] = useContext(UserContext);
 
     useEffect(() => {
         fetch('http://localhost:5000/isAdmin', {
@@ -22,7 +22,7 @@ const AdminDashboard = () => {
     console.log( isAdmin);
     return (
         <div>
-            {isAdmin ? <div><SidebarAdmin/><ServiceList isAdmin={isAdmin}/></div> : <Home/>}           
+            {isAdmin ? <ServiceList isAdmin={isAdmin}/> : <Home/>}           
         </div>
     );
 };

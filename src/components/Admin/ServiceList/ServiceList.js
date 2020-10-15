@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../../../App';
+import SidebarAdmin from '../SidebarAdmin/SidebarAdmin';
 import ServiceDataTable from './ServiceDataTable';
 
 const ServiceList = ({isAdmin}) => {
@@ -20,6 +21,7 @@ const ServiceList = ({isAdmin}) => {
 
     return (
         <div>
+            <SidebarAdmin />
             <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
                 <h5 className="text-brand">Service List</h5>
                 <ServiceDataTable orders={orders} />

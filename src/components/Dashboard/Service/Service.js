@@ -5,8 +5,8 @@ import Sidebar from '../Sidebar/Sidebar';
 
 const containerStyle = {
     backgroundColor: "#F4FDFB",
-    height: "95vh",
-    width: "auto"
+    height: "auto",
+    width: "90%"
 }
 
 const Service = () => {
@@ -17,8 +17,9 @@ const Service = () => {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                authorization: `Bearer ${sessionStorage.getItem('token')}` }
-        } )
+                authorization: `Bearer ${sessionStorage.getItem('token')}`
+            }
+        })
             .then(res => res.json())
             .then(data => setOrders(data))
 
@@ -30,10 +31,18 @@ const Service = () => {
                 <div className="col-md-2 col-sm-6 col-12">
                     <Sidebar></Sidebar>
                 </div>
-                <div style={containerStyle} className="card-deck col-md-10 col-sm-6 col-12 pt-5">
-                    {
-                        orders.map(orders => <ServiceDetail orders={orders} key={orders._id} />)
-                    }
+                <div className="col-md-10 col-sm-6 col-12 ">
+                    <div class="d-flex bd-highlight mb-3">
+                        <div class="mr-auto p-2 bd-highlight">Orders:</div>
+                        <div class="p-2 bd-highlight"><img src={loggedInUser.photo} width="50px" height="auto" alt="" /></div>
+                        <div class="p-2 bd-highlight">{loggedInUser.name}</div>
+                    </div>
+                    <div className="card-deck pt-5" style={containerStyle}>
+                        {
+                            orders.map(orders => <ServiceDetail orders={orders} key={orders._id} />)
+                        }
+                    </div>
+
                 </div>
             </div>
 

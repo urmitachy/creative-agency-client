@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
+import { useHistory } from 'react-router-dom';
+import { UserContext } from '../../../App';
 import SidebarAdmin from '../SidebarAdmin/SidebarAdmin';
 
+const containerStyle = {
+    backgroundColor: "#F4FDFB",
+    height: "auto",
+    width: "auto"
+}
 const AddService = () => {
     const { register, handleSubmit, watch, errors } = useForm();
+    let history = useHistory();
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const onSubmit = data => {
         const formData = new FormData()
         formData.append('file', data.picture[0]);
@@ -17,6 +26,9 @@ const AddService = () => {
             .then(response => response.json())
             .then(data => {
                 console.log(data)
+                if (data) {
+                    history.push("/addService");
+                }
             })
             .catch(error => {
                 console.error(error)
@@ -28,7 +40,12 @@ const AddService = () => {
         <div>
             <SidebarAdmin />
             <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
-                <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
+                <div class="d-flex bd-highlight mb-3">
+                    <div class="mr-auto p-2 bd-highlight">Add Service:</div>
+                    <div class="p-2 bd-highlight"><img src={loggedInUser.photo} width="50px" height="auto" alt="" /></div>
+                    <div class="p-2 bd-highlight">User: {loggedInUser.name}</div>
+                </div>
+                <form style={containerStyle} className="p-5" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group row">
                         <div className="col-6">
                             <label>Service Title</label>

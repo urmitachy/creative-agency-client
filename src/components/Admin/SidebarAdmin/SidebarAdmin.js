@@ -1,18 +1,26 @@
 import { faListAlt, faPlus, faSignOutAlt, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { UserContext } from '../../../App';
 import logo from '../../../imge/images/logos/Group 1367.png';
 
 const SidebarAdmin = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    
+    let history = useHistory();
+    const signOut = () => {
+        setLoggedInUser({});
+        localStorage.clear();
+        sessionStorage.clear();
+        history.push("/home");
+    }
     return (
         <div className="sidebar d-flex flex-column justify-content-between col-md-2 py-5 px-4" style={{ height: "100vh" }}>            
             <ul className="list-unstyled">
                 <li><img src={logo} style={{ width: "100px" }} alt="" /></li>
                 <li>
-                    <Link to="/servicelist" className="text-dark">
+                    <Link to="/" className="text-dark">
                         <FontAwesomeIcon icon={faListAlt} /> <span>Service list</span>
                     </Link>
                 </li>
@@ -28,8 +36,8 @@ const SidebarAdmin = () => {
                 </li>
             </ul>
             <div>
-                {/* <button onClick={() => setLoggedInUser({})}>Logout</button> */}
-                <Link to="/" className="text-dark"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span></Link>
+               
+                <Link to="/" className="text-dark"><FontAwesomeIcon icon={faSignOutAlt} /> <span onClick={signOut}>Logout</span></Link>
             </div>
 
 

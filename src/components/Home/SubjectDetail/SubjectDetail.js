@@ -15,9 +15,7 @@ const SubjectDetail = (props) => {
                     <h5>{title}</h5>
                     <p className="card-text text-secondary mt-4">{description}</p>
                 </div>
-            </a>
-            <a href=""></a>
-
+            </a> 
         </div>
 
 

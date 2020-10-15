@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt, faHome, faShoppingCart, faShoppingBasket, faCommentAlt, } from '@fortawesome/free-solid-svg-icons';
 import './Sidebar.css';
@@ -9,6 +9,13 @@ import { UserContext } from '../../../App';
 
 const Sidebar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+    let history = useHistory();
+    const signOut = () => {
+        setLoggedInUser({});
+        localStorage.clear();
+        sessionStorage.clear();
+        history.push("/home");
+    }
     
     return (
 
@@ -38,7 +45,7 @@ const Sidebar = () => {
             </ul>
             <div>
                 {/* <button onClick={() => setLoggedInUser({})}>Logout</button> */}
-                <Link to="/" className="text-dark"><FontAwesomeIcon icon={faSignOutAlt} /> <span>Logout</span></Link>
+                <Link to="/" className="text-dark"><FontAwesomeIcon icon={faSignOutAlt} /> <span onClick={signOut}>Logout</span></Link>
             </div>
         </div>
 
