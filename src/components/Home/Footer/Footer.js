@@ -3,9 +3,7 @@ import './Footer.css'
 
 const Footer = () => {
     return (
-            
-
-       <section className="footer">
+        <section id="contact" className="footer">
             <div className="row container">
             <div className="col-md-6">
                 <h1>Let us handle your</h1>

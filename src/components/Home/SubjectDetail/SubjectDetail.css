@@ -3,16 +3,27 @@
   border : 0;
   background-color: transparent;
   margin-bottom: 20%;
-  
- 
 }
 
 .subjectDetail{
   text-decoration: none;
 }
 .card-header:hover{
-  box-shadow: 5px 5px 20px #ecf0f1,-5px -5px 20px #ecf0f1;
+  box-shadow: 5px 5px 20px #eaf7fa,-5px -5px 20px #c7dce0;
   border-radius: 20px;
   transform: scale(1.05);
+  border : 1px solid transparent;
+}
+.img-header{
+  transition : transform .2s ease-in-out;
+  border : 0;
+  background-color: transparent;
+  margin-bottom: 20%;
+}
+
+.img-header:hover{
+  box-shadow: none;
+  border-radius: 20px;
+  transform: scale(1.15);
   border : 1px solid transparent;
 }

@@ -1,0 +1,8 @@
+.feedback{
+    
+    height: 250px;
+    border: 1px solid #b6b2b2;
+    border-radius: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+}

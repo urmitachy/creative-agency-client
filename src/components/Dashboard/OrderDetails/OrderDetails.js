@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from "react-hook-form";
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { UserContext } from '../../../App';
 
 const OrderDetails = () => {
-    const { register,handleSubmit, errors} = useForm();
-    let history = useHistory();
+    const { register,handleSubmit, errors} = useForm();    
     const { title } = useParams();
     const [services, setServices] = useState([]);
     const selectedService = services.find(service => service.title === title);
@@ -17,7 +16,7 @@ const OrderDetails = () => {
     const authorImg = {...image}
     
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://stormy-anchorage-31653.herokuapp.com/services')
             .then(res => res.json())
             .then(data => setServices(data))
     }, []);    
@@ -30,9 +29,10 @@ const OrderDetails = () => {
         formData.append('projectDetails', data.projectDetails);
         formData.append('orderName', data.orderName);
         formData.append('authorImg', authorImg.img);
+        formData.append('price', data.price);
         formData.append('description', selectedOrder.description);
 
-        fetch('http://localhost:5000/addOrders', {
+        fetch('https://stormy-anchorage-31653.herokuapp.com/addOrders', {
             method: 'POST',
             body: formData
         })
@@ -40,7 +40,7 @@ const OrderDetails = () => {
             .then(data => {
                 console.log(data)
                 if (data) {
-                    history.push("/addReview");
+                    alert('Order submitted successfully')
                 }
             })
             .catch(error => {
@@ -51,15 +51,15 @@ const OrderDetails = () => {
         <div className="col-12 col-md-8 m-4">
             <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
                 <div className="form-group">                                          
-                        <input name="email" type="email" defaultValue={loggedInUser.email} placeholder="Your Email Address" className="form-control" ref={register} />
+                        <input name="email" type="email" defaultValue={loggedInUser.email} placeholder="Your Email Address" className="form-control" ref={register({ required: true })} />
                         {errors.title && <span>This field is required</span>}                   
                 </div> 
                 <div className="form-group">                                          
-                        <input name="name" type="text" defaultValue={loggedInUser.name} placeholder="Your Name/Company's Name" className="form-control" ref={register} />
+                        <input name="name" type="text" defaultValue={loggedInUser.name} placeholder="Your Name/Company's Name" className="form-control" ref={register({ required: true })} />
                         {errors.title && <span>This field is required</span>}                   
                 </div> 
                 <div className="form-group">                                          
-                        <input name="orderName" type="text" defaultValue={title} placeholder="Enter Your Order Name" className="form-control" ref={register} />
+                        <input name="orderName" type="text" defaultValue={title} placeholder="Enter Your Order Name" className="form-control" ref={register({ required: true })} />
                         {errors.title && <span>This field is required</span>}                   
                 </div>                    
 
@@ -72,7 +72,7 @@ const OrderDetails = () => {
                         <input className="form-control" name="price" placeholder="Price" type="number" ref={register({ required: true })} />
                     </div>
                     <div className="col-6">
-                        <input className="form-control" name="file" placeholder="Upload project file" type="file" ref={register({ required: true })}/>
+                        <input className="form-control" name="file" placeholder="Upload project file" type="file" ref={register}/>
                     </div>
                 </div>                
                 <div className="form-group text-right">

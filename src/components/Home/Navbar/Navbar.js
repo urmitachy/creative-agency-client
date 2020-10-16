@@ -36,7 +36,10 @@ const Navbar = () => {
   return (
     <nav className="container navbar navbar-expand-lg navbar-light">
       <img src={logo} style={{ width: "15%" }} alt="" />
-      <div className="collapse navbar-collapse " id="navbarSupportedContent">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+      <div className="collapse navbar-collapse " id="collapsibleNavbar">
         <ul className="navbar-nav ml-auto">
           <li className="nav-item active">
             <a className="nav-link mr-4" href="#">Home</a>
@@ -48,7 +51,7 @@ const Navbar = () => {
             <a className="nav-link mr-4" href="#">Our Team</a>
           </li>
           <li className="nav-item">
-            <a className="nav-link mr-4" href="#">Contact Us</a>
+            <a className="nav-link mr-4" href="/#contact">Contact Us</a>
           </li>
 
           {loggedInUser.isSignedIn ? <div className="dropdown">
@@ -61,12 +64,6 @@ const Navbar = () => {
                 <a href="/admin">Admin</a>
               </div>
             </div>}
-
-
-
-          {/* <Link to="/login">
-            <button style={{ width: "100px" }} type="button" className="btn btn-dark">Log In</button>
-          </Link> */}
         </ul>
       </div>
     </nav>

@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import { UserContext } from '../../../App';
-import Home from '../../Home/Home/Home';
-import Login from '../../Login/Login';
 import ServiceList from '../ServiceList/ServiceList';
 import SidebarAdmin from '../SidebarAdmin/SidebarAdmin';
 
 const AdminDashboard = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const [isAdmin, setIsAdmin] = useContext(UserContext);
-
+    const [isAdmin, setIsAdmin] = useState([]);
+    
     useEffect(() => {
-        fetch('http://localhost:5000/isAdmin', {
+        fetch('https://stormy-anchorage-31653.herokuapp.com/isAdmin', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify({ email: loggedInUser.email })
@@ -22,7 +20,7 @@ const AdminDashboard = () => {
     console.log( isAdmin);
     return (
         <div>
-            {isAdmin ? <ServiceList isAdmin={isAdmin}/> : <Home/>}           
+            {isAdmin ? <SidebarAdmin isAdmin={isAdmin}/> : <div>{alert('Unauthorised access')} <Redirect to={"/"} storage={sessionStorage.clear()}></Redirect></div>}  
         </div>
     );
 };

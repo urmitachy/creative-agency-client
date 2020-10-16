@@ -10,14 +10,6 @@ import './Login.css'
 
 const Login = () => {
 
-    const [user, setUser] = useState({
-        isSignedIn: false,
-        name: '',
-        email: '',
-        password: '',
-        photo: ''
-    });
-
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const history = useHistory();
     const location = useLocation();

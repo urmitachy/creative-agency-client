@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from "react-hook-form";
 import { useHistory } from 'react-router-dom';
 import { UserContext } from '../../../App';
-import SidebarAdmin from '../SidebarAdmin/SidebarAdmin';
+
 
 const containerStyle = {
     backgroundColor: "#F4FDFB",
@@ -19,7 +19,7 @@ const AddService = () => {
         formData.append('title', data.title);
         formData.append('description', data.description);
 
-        fetch('http://localhost:5000/addServices', {
+        fetch('https://stormy-anchorage-31653.herokuapp.com/addServices', {
             method: 'POST',
             body: formData
         })
@@ -27,7 +27,7 @@ const AddService = () => {
             .then(data => {
                 console.log(data)
                 if (data) {
-                    history.push("/addService");
+                    alert('New Service added successfully');
                 }
             })
             .catch(error => {
@@ -37,8 +37,8 @@ const AddService = () => {
 
     console.log(watch("example"));
     return (
-        <div>
-            <SidebarAdmin />
+        // <div>
+        //     <SidebarAdmin />
             <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
                 <div class="d-flex bd-highlight mb-3">
                     <div class="mr-auto p-2 bd-highlight">Add Service:</div>
@@ -70,9 +70,8 @@ const AddService = () => {
                         <button style={{ width: "100px" }} type="submit" class="btn btn-dark">Submit</button>
                     </div>
                 </form>
-
             </div>
-        </div>
+        // </div>
 
     );
 };
